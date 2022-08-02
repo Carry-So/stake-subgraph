@@ -1,0 +1,9 @@
+{
+    "chain_name": "apothem",
+    "chain_id": 51,
+    "stake": {
+        "address": "xdce3cb8046897a2fa81cf17b8b221c9cb15e3265ad",
+        "block": 36258801,
+        "hash": "0x36120f37014860cf0d00c902474ba0212cf344401f9f742b9f7eb91481306144"
+    }
+}
