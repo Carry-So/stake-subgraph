@@ -1,0 +1,39 @@
+specVersion: 0.0.4
+description: stake contract subgraph
+repository: https://github.com/gzliudan/stake-subgraph
+schema:
+    file: ./schema.graphql
+dataSources:
+    - name: StakeContract
+      kind: ethereum/contract
+      network: {{chain_name}}
+      source:
+          abi: StakeContract
+          address: '{{stake.address}}'
+          startBlock: {{stake.block}}
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.7
+          language: wasm/assemblyscript
+          file: ./src/stake.ts
+          entities:
+              - Account
+              - BlackList
+              - ERC20Contract
+              - ERC20Balance
+              - ERC20Approval
+              - ERC20Transfer
+              - Event
+              - Transaction
+          abis:
+              - name: StakeContract
+                file: ./abis/stake.json
+          eventHandlers:
+              - event: Pool(address,address,uint256,uint256,uint256,string)
+                handler: handPool
+              - event: Stake(address,uint256,uint256,uint256)
+                handler: handleStake
+              - event: UnStake(address,uint256,uint256,uint256)
+                handler: handleUnstake
+              - event: Harvested(address,uint256,uint256,uint256)
+                handler: handleHarvested
