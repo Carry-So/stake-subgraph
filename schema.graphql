@@ -1,0 +1,59 @@
+type PoolInfo @entity {
+    id: ID! # Set to `'1'`
+    count: BigInt!
+}
+
+type PoolObj @entity {
+    id: ID! # Set to `id.toString()`
+    tokenAddress: String! # Set to `'xdc' + tokenAddress.toHexString()`
+    rewardAddress: String! # Set to `'xdc' + rewardAddress.toHexString()`
+    rewardMutipiler: BigInt!
+    rewardDivider: BigInt!
+    totalStakeAmount: BigInt!
+    item: BigInt!
+    name: String!
+    accounts: [StakeDetail!]! @derivedFrom(field: "pool")
+    stakeEvents: [StakeEvent!]! @derivedFrom(field: "pool")
+    unstakeEvents: [UntsakeEvent!]! @derivedFrom(field: "pool")
+    harvestEvents: [HarvestEvent!]! @derivedFrom(field: "pool")
+}
+
+type Account @entity {
+    id: ID! # Set to `'xdc' + address.toHexString()`
+    pools: [StakeDetail!]! @derivedFrom(field: "account")
+    stakeEvents: [StakeEvent!]! @derivedFrom(field: "account")
+    unstakeEvents: [UntsakeEvent!]! @derivedFrom(field: "account")
+    harvestEvents: [HarvestEvent!]! @derivedFrom(field: "account")
+}
+
+type StakeDetail @entity {
+    id: ID! # Set to `pool.id + '-' + account.id`
+    pool: PoolObj!
+    account: Account!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type StakeEvent @entity(immutable: true) {
+    id: ID! # Set to `transaction.id + '-' + pool.id + '-' + account.id`
+    pool: PoolObj!
+    account: Account!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type UntsakeEvent @entity(immutable: true) {
+    id: ID! # Set to `transaction.id + '-' + `pool.id + '-' + account.id`
+    pool: PoolObj!
+    account: Account!
+    amount: BigInt!
+    timestamp: BigInt!
+}
+
+type HarvestEvent @entity(immutable: true) {
+    id: ID! # Set to `transaction.id + '-' + `pool.id + '-' + account.id`
+    pool: PoolObj!
+    account: Account!
+    amount: BigInt!
+    timestamp: BigInt!
+}
