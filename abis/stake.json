@@ -1,0 +1,260 @@
+[
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": false, "internalType": "address", "name": "_user", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_pool", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_time", "type": "uint256" }
+        ],
+        "name": "Harvested",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+            { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": false, "internalType": "address", "name": "_tokenaddress", "type": "address" },
+            { "indexed": false, "internalType": "address", "name": "_rewardAddress", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "_rewardMultiplier", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_rewardDivider", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_item", "type": "uint256" },
+            { "indexed": false, "internalType": "string", "name": "_name", "type": "string" }
+        ],
+        "name": "Pool",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": false, "internalType": "address", "name": "_user", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_pool", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_time", "type": "uint256" }
+        ],
+        "name": "Stake",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            { "indexed": false, "internalType": "address", "name": "_user", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "_amount", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_pool", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "_time", "type": "uint256" }
+        ],
+        "name": "UnStake",
+        "type": "event"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_limit", "type": "uint256" }],
+        "name": "changeDailyCapLimit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_minAmount", "type": "uint256" }],
+        "name": "changeMinStakeAmt",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_poolId", "type": "uint256" }],
+        "name": "checkPoolPause",
+        "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "address", "name": "_tokenAddress", "type": "address" },
+            { "internalType": "address", "name": "_rewardAddress", "type": "address" },
+            { "internalType": "uint256", "name": "_rewardMultiplier", "type": "uint256" },
+            { "internalType": "uint256", "name": "_rewardDivider", "type": "uint256" },
+            { "internalType": "uint256", "name": "_item", "type": "uint256" },
+            { "internalType": "string", "name": "_name", "type": "string" }
+        ],
+        "name": "createPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "dailyCapAmt",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    { "inputs": [], "name": "depositRewardAmount", "outputs": [], "stateMutability": "payable", "type": "function" },
+    {
+        "inputs": [
+            { "internalType": "address", "name": "_user", "type": "address" },
+            { "internalType": "uint256", "name": "_poolId", "type": "uint256" }
+        ],
+        "name": "getCurrentReward",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "_time", "type": "uint256" },
+            { "internalType": "uint256", "name": "_poolId", "type": "uint256" }
+        ],
+        "name": "getDailyCap",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_poolId", "type": "uint256" }],
+        "name": "getPoolInfo",
+        "outputs": [
+            {
+                "components": [
+                    { "internalType": "address", "name": "tokenAddress", "type": "address" },
+                    { "internalType": "address", "name": "rewardAddress", "type": "address" },
+                    { "internalType": "uint256", "name": "rewardMutipiler", "type": "uint256" },
+                    { "internalType": "uint256", "name": "rewardDivider", "type": "uint256" },
+                    { "internalType": "uint256", "name": "totalStakeAmount", "type": "uint256" },
+                    { "internalType": "uint256", "name": "item", "type": "uint256" },
+                    { "internalType": "string", "name": "name", "type": "string" }
+                ],
+                "internalType": "struct StakeContract.PoolStruct",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "address", "name": "_user", "type": "address" },
+            { "internalType": "uint256", "name": "_poolId", "type": "uint256" }
+        ],
+        "name": "getStakeDetails",
+        "outputs": [
+            {
+                "components": [
+                    { "internalType": "bool", "name": "isExist", "type": "bool" },
+                    { "internalType": "uint256", "name": "amount", "type": "uint256" },
+                    { "internalType": "uint256", "name": "stakeTime", "type": "uint256" },
+                    { "internalType": "uint256", "name": "harvested", "type": "uint256" }
+                ],
+                "internalType": "struct StakeContract.StakeStruct",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "address", "name": "_user", "type": "address" },
+            { "internalType": "uint256", "name": "_poolId", "type": "uint256" }
+        ],
+        "name": "getTotalReward",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
+        "name": "getUserPoolIDLength",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
+        "name": "getUserPoolId",
+        "outputs": [{ "internalType": "uint256[]", "name": "", "type": "uint256[]" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_poolId", "type": "uint256" }],
+        "name": "harvest",
+        "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "minStakeAmount",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "pauseUnPauseOfflineStaking", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+    {
+        "inputs": [],
+        "name": "poolLength",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_poolId", "type": "uint256" }],
+        "name": "poolPauseUnPause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "_poolId", "type": "uint256" },
+            { "internalType": "uint256", "name": "_amount", "type": "uint256" }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+            { "internalType": "address", "name": "_token", "type": "address" }
+        ],
+        "name": "transferTokens",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_poolId", "type": "uint256" }],
+        "name": "unStake",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }],
+        "name": "withdrawAmount",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
